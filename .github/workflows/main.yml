@@ -28,6 +28,7 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn run build
+        
       - name: Set AWS credentials
       - uses: actions/checkout@master
       - uses: jakejarvis/s3-sync-action@master
