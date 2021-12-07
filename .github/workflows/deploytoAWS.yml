@@ -20,12 +20,22 @@ jobs:
     - name: Build with dotnet
       run: dotnet build --configuration Release
       
+    - name: dotnet publish
+      run: dotnet publish -C release -o ${{env.DOTNET_ROOT}}/yusadolat.me
+      
+    - name: Publish artifacts
+      uses: action/upload-artifacts@master
+      with:
+        name: yusodolat.me
+        path: ${{env.DOTNET_ROOT}}/yusadolat.me
     
   deploy:
     needs: build
     name: Deploy
     runs-on: ubuntu-latest
     steps:
+    
+    
     - uses: actions/checkout@master
     - uses: jakejarvis/s3-sync-action@master
       with:
